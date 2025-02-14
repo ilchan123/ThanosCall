@@ -14,7 +14,7 @@
     },
     "requireConfigFile": false,
     "babelOptions": {
-      "plugins": ["@babel/plugin-syntax-jsx"]  // ✅ JSX 지원 추가
+      "plugins": ["@babel/plugin-syntax-jsx"] 
     }
   },
   "settings": {
