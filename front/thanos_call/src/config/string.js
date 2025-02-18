@@ -31,18 +31,22 @@ export const STRINGS = {
       BACK_KEY: "← 뒤로 가기",
     },
   },
-  CS_LIST_MANAGE: {
-    SEARCHBOX: {
-      SEARCH_TEXT: "검색 내용을 입력하세요",
-    },
-  },
   LOGIN_FRAME: {
-    LOGIN: {
+    LOGIN_BUTTON: {
       LOGIN: "로그인",
+    },
+    LOGIN_INTERFACE: {
+      PLACEHOLDER: "사원 번호 or 사업자 번호",
+      PASSWORD: "비밀번호",
     },
     LOGIN_FORM: {
       EMPLOYEE_NUMBER: "사원 번호 or 사업자 번호",
       PASSWORD: "비밀번호",
+    },
+  },
+  CS_LIST_MANAGE: {
+    SEARCHBOX: {
+      SEARCH_TEXT: "검색 내용을 입력하세요",
     },
   },
 }
