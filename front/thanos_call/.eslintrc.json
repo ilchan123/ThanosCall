@@ -34,6 +34,7 @@
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "no-undef": "off",
-    "import/no-anonymous-default-export": "off"
+    "import/no-anonymous-default-export": "off",
+    "no-warning-comments": "off"
   }
 }
