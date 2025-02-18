@@ -18,7 +18,7 @@ const styles = {
     height: "54px",
     padding: "12px",
     textAlign: "center",
-    backgroundColor: "var(--gray700)",
+    backgroundColor: "var(--blue400)",
     color: "var(--white)",
     borderRadius: "6px",
     border: "1px solid",

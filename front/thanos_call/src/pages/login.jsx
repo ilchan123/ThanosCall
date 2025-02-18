@@ -1,7 +1,7 @@
-import LoginPanel from "../components/login/login_Panel"
+import LoginPanel from "../components/login/login_panel"
 import Cover from "../assets/images/Login_cover.svg"
-import Logo_white from "../assets/images/Logo_Thanos_white.svg"
-import Logodown from "../assets/images/Login_down_letter.svg"
+import LogoWhite from "../assets/images/Logo_Thanos_white.svg"
+import LogoDown from "../assets/images/Login_down_letter.svg"
 
 const Login_Page = () => {
   return (
@@ -9,12 +9,12 @@ const Login_Page = () => {
       <div style={styles.contentWrapper}>
         <div style={styles.loginPanel}>
           <LoginPanel />
-          <img style={styles.logodownimage} src={Logodown} alt="Logo" />
+          <img style={styles.logodownimage} src={LogoDown} alt="Logo" />
         </div>
 
         <div style={styles.illustration}>
           <img style={styles.coverImage} src={Cover} alt="Cover" />
-          <img style={styles.logoWhite} src={Logo_white} alt="Logo White" />
+          <img style={styles.logoWhite} src={LogoWhite} alt="Logo White" />
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ const styles = {
     alignItems: "center",
     width: "100vw",
     height: "100vh",
-    backgroundColor: "var(--white)",
+    backgroundColor: "var(--gray100)",
   },
   contentWrapper: {
     display: "flex",
@@ -38,7 +38,6 @@ const styles = {
     backgroundColor: "var(--white)",
     borderRadius: "10px",
     overflow: "hidden",
-    boxShadow: "var(--box-shadow-overlay)",
   },
   loginPanel: {
     flexBasis: "45%",
