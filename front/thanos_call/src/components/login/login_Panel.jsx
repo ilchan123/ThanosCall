@@ -5,7 +5,7 @@ import Logo from "../../assets/images/Logo_Thanos_color.svg"
 const LoginPanel = () => {
   return (
     <div style={styles.container}>
-      <img style={styles.logoimage} src={Logo} alt="Logo" />
+      <img style={styles.logoimage} src={Logo} alt="Logoimage" />
       <LoginForm />
     </div>
   )

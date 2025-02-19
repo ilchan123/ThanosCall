@@ -1,7 +1,15 @@
 import React from "react"
 
-const LoginInput = ({ placeholder, type = "text" }) => {
-  return <input type={type} placeholder={placeholder} style={styles.input} />
+const LoginInput = ({ placeholder, type = "text", value, onChange }) => {
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      style={styles.input}
+    />
+  )
 }
 
 const styles = {
