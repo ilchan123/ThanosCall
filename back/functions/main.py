@@ -25,7 +25,7 @@ firebase_admin.initialize_app(cred,{
     'storageBucket': 'thanoscall-30729.firebasestorage.app',
     })
 # 데이터 베이스 연결
-db = firestore.client()
+db = firestore.Client(database="infinitystone")
 # storage 연결
 bucket = storage.bucket()
     
@@ -63,7 +63,7 @@ def upload_firebase(file_path, storage_path):
     blob.make_public()  # 파일을 공개적으로 접근할 수 있도록 설정
     return blob.public_url  # Storage에서 다운로드 가능한 URL 반환
 
-@https_fn.on_request()
+@https_fn.on_request(region="asia-northeast3")
 def start_whisper(req: https_fn.Request) -> https_fn.Response:
     """음성 파일을 변환하고 Storage 와 Firestore에 저장"""
     try:
@@ -72,16 +72,16 @@ def start_whisper(req: https_fn.Request) -> https_fn.Response:
         doc_id = req.args.get("doc_id")
         
         if not collection or not doc_id:
-            return https_fn.Response("컬렉션 이름 또는 문서 ID가 없습니다.")
+            return https_fn.Response(json.dumps({"code": 400,"error": "컬렉션 이름 또는 문서 ID가 없습니다."}, ensure_ascii=False), status=400, mimetype="application/json")
         
         doc_ref = db.collection(collection).document(doc_id)
         doc = doc_ref.get()
         if not doc.exists:
-            return https_fn.Response("해당 문서를 찾을 수 없습니다.")
+            return https_fn.Response(json.dumps({"code": 404,"error": "해당 문서를 찾을 수 없습니다."}, ensure_ascii=False), status=404, mimetype="application/json")
 
         file_url = doc.to_dict().get("voice")
         if not file_url:
-            return https_fn.Response("파일 URL이 없습니다.")
+            return https_fn.Response(json.dumps({"code": 404, "error": "파일 URL이 없습니다."}, ensure_ascii=False), status=404, mimetype="application/json")
 
         # 경로 설정
         input_path = f"temp/audio_{doc_ref.id}.mp3"
@@ -89,9 +89,9 @@ def start_whisper(req: https_fn.Request) -> https_fn.Response:
         # temp 디렉토리가 존재하지 않으면 자동으로 생성
         os.makedirs(os.path.dirname(input_path), exist_ok=True)
         
-        # 음성 파일 다운로드
+        # 음성 파일 불러오기
         if not get_audio(file_url, input_path):
-            return https_fn.Response("파일 다운로드 실패")
+            return https_fn.Response(json.dumps({"code": 500, "error": "음성 파일 불러오기 실패"}, ensure_ascii=False), status=500, mimetype="application/json")
 
         # 음성을 텍스트로 변환 후 .txt 파일로 저장
         transcribe_audio(input_path, output_path)
@@ -107,7 +107,7 @@ def start_whisper(req: https_fn.Request) -> https_fn.Response:
         os.remove(input_path)
         os.remove(output_path)
 
-        return https_fn.Response(f"변환 완료! URL: {transcript_url}", mimetype="text/plain")
+        return https_fn.Response(json.dumps({"code": 200,"message": "변환 완료", "url": transcript_url}, ensure_ascii=False), status=200, mimetype="application/json")
 
     except Exception as e:
-        return https_fn.Response(f"오류 발생: {str(e)}")
+        return https_fn.Response(json.dumps({"code": 500,"error": "서버 오류 발생"}, ensure_ascii=False), status=500, mimetype="application/json")
