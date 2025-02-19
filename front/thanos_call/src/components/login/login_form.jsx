@@ -12,7 +12,6 @@ const LoginForm = () => {
   const handleLogin = async () => {
     const result = await loginWithFirestore(id, password)
     if (result.success) {
-      console.log("로그인 성공:", result.user)
       const successMessage =
         STRINGS.LOGIN_FRAME.LOGIN_FORM.LOGIN_SUCCESS.replace(
           "{name}",
@@ -52,7 +51,7 @@ const styles = {
     maxWidth: "360px",
   },
   error: {
-    color: "red",
+    color: "var(--red100)",
     fontSize: "14px",
     marginBottom: "10px",
   },
