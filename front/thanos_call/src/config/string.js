@@ -42,11 +42,22 @@ export const STRINGS = {
     LOGIN_FORM: {
       EMPLOYEE_NUMBER: "사원 번호 or 사업자 번호",
       PASSWORD: "비밀번호",
+      LOGIN_SUCCESS: "{name}님, 로그인 성공!",
     },
   },
   CS_LIST_MANAGE: {
     SEARCHBOX: {
       SEARCH_TEXT: "검색 내용을 입력하세요",
     },
+  },
+  SERVICES: {
+    AUTH_SERVICE: {
+      ID_NO_EXIST: "아이디가 존재하지 않습니다.",
+      PASSWORD_NO_EXIST: "비밀번호가 일치하지 않습니다.",
+      LOGIN_SUCCESS: "로그인 성공!",
+      LOGIN_ERROR: "로그인 중 오류가 발생했습니다.",
+      ERROR: "로그인 에러",
+    },
+    FIREBASE: {},
   },
 }
