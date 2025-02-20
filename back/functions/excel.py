@@ -20,10 +20,18 @@ def excel_data(req: https_fn.Request) -> https_fn.Response:
 
         data = [{"id": doc.id, **doc.to_dict()} for doc in docs]
         
+        # Firestore 데이터를 문자열로 변환
+        for item in data:
+            for key, value in item.items():
+                if isinstance(value, dict) or isinstance(value, list):
+                    item[key] = json.dumps(value, ensure_ascii=False)  # JSON 문자열로 변환
+                elif hasattr(value, 'isoformat'):  # Timestamp 객체 변환
+                    item[key] = value.isoformat()
+       
         os.makedirs(address, exist_ok=True)
         file_path = os.path.join(address, f"{collection}.xlsx")  
 
-        df = pd.DataFrame(data)
+        df = pd.DataFrame(data, dtype=str)
         df.to_excel(file_path, index=False)
         
         return https_fn.Response(json.dumps({"code": 200, "message": "변환 완료"}, ensure_ascii=False), status=200, mimetype="application/json")
