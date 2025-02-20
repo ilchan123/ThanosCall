@@ -1,13 +1,21 @@
-import React from "react"
+import React, { useState } from "react"
 import CallActionButton from "./call_action_button"
 
 const CallActionGroup = () => {
+  // 상태 추가
+  const [clickedType, setClickedType] = useState(null)
+
   return (
     <div style={styles.container}>
-      <CallActionButton type="accept" onClick={() => alert("Call Accepted!")} />
+      <CallActionButton
+        type="accept"
+        isClicked={clickedType === "accept"}
+        onClick={() => setClickedType("accept")}
+      />
       <CallActionButton
         type="decline"
-        onClick={() => alert("Call Declined!")}
+        isClicked={clickedType === "decline"}
+        onClick={() => setClickedType("decline")}
       />
     </div>
   )
