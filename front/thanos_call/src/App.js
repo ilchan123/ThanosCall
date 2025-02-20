@@ -1,9 +1,9 @@
 import React from "react"
 import "./App.css"
+import Layout from "./utils/layout"
 
-import Login_Page from "./pages/login"
 const App = () => {
-  return <Login_Page />
+  return <Layout />
 }
 
 export default App
