@@ -1,23 +1,21 @@
 import React, { useState } from "react"
-import LoginButton from "./login_button_box"
-import LoginInput from "./login_input_box"
+import { useNavigate } from "react-router-dom"
+import LoginButton from "../login/login_button_box"
+import LoginInput from "../login/login_input_box"
 import { loginWithFirestore } from "../../services/authService"
 import { STRINGS } from "../../config/string"
 
-const LoginForm = () => {
+const Login_Page = () => {
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const navigate = useNavigate()
 
   const handleLogin = async () => {
     const result = await loginWithFirestore(id, password)
     if (result.success) {
-      const successMessage =
-        STRINGS.LOGIN_FRAME.LOGIN_FORM.LOGIN_SUCCESS.replace(
-          "{name}",
-          result.user.name
-        )
-      alert(successMessage)
+      alert("로그인 성공!")
+      navigate("/call_center")
     } else {
       setErrorMessage(result.message)
     }
@@ -57,4 +55,4 @@ const styles = {
   },
 }
 
-export default LoginForm
+export default Login_Page
