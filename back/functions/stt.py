@@ -53,7 +53,7 @@ def upload_firebase(file_path, storage_path):
 def start_whisper(req: https_fn.Request) -> https_fn.Response:
     """음성 파일을 변환하고 Storage 와 Firestore에 저장"""
     try:
-        # Firestore에서 `voice` URL 가져오기
+        # Firestore에서 `consult_record` URL 가져오기
         collection = req.args.get("collection")
         doc_id = req.args.get("doc_id")
         
@@ -65,7 +65,7 @@ def start_whisper(req: https_fn.Request) -> https_fn.Response:
         if not doc.exists:
             return https_fn.Response(json.dumps({"code": 404,"error": "해당 문서를 찾을 수 없습니다."}, ensure_ascii=False), status=404, mimetype="application/json")
 
-        file_url = doc.to_dict().get("voice")
+        file_url = doc.to_dict().get("consult_record")
         if not file_url:
             return https_fn.Response(json.dumps({"code": 404, "error": "파일 URL이 없습니다."}, ensure_ascii=False), status=404, mimetype="application/json")
 
@@ -87,7 +87,7 @@ def start_whisper(req: https_fn.Request) -> https_fn.Response:
         transcript_url = upload_firebase(output_path, storage_file_path)
 
         # Firestore의 `text` 필드에 변환된 파일 URL 저장
-        doc_ref.update({"text": json.dumps(transcript_url, ensure_ascii=False)})
+        doc_ref.update({"consult_text": json.dumps(transcript_url, ensure_ascii=False)})
         
         #작업 완료 후 파일을 삭제
         os.remove(input_path)
