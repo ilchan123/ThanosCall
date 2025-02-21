@@ -1,8 +1,23 @@
 import React from "react"
 import LogoLetter from "../../assets/images/Logo_letter_finger.svg"
-// import SearchableDashboard from "../boxes/SearchableDashboard"
+import CSListManage from "../cs_list_manage/cs_list_manage"
+import CSManualCheck from "../cs_list_manage/cs_menual_check"
+import CSDataAnalysis from "../cs_list_manage/cs_data_analysis"
 
-const CSHeader = () => {
+const CSHeader = ({ selectedTab }) => {
+  const renderContent = () => {
+    switch (selectedTab) {
+      case "CS_MANAGE":
+        return <CSListManage />
+      case "CS_MENUAL":
+        return <CSManualCheck />
+      case "CS_DATA":
+        return <CSDataAnalysis />
+      default:
+        return <CSListManage />
+    }
+  }
+
   return (
     <div style={styles.container}>
       <div style={styles.topRight}>
@@ -10,8 +25,7 @@ const CSHeader = () => {
       </div>
 
       <div style={styles.contentWrapper}>
-        <div style={styles.leftBox}>{/* <SearchableDashboard /> */}</div>
-        <div style={styles.rightBox}></div>
+        <div style={styles.rightBox}>{renderContent()}</div>
       </div>
     </div>
   )
@@ -20,38 +34,41 @@ const CSHeader = () => {
 const styles = {
   container: {
     width: "100%",
-    height: "100vhs",
+    height: "100vh",
     backgroundColor: "var(--blue500)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: "150px",
     position: "relative",
   },
   topRight: {
     position: "absolute",
-    top: "-90px",
-    right: "30px",
+    top: "-140px",
+    right: "60px",
   },
   logo: {
-    width: "300px",
-    height: "300px",
+    width: "350px",
+    height: "350px",
     objectFit: "contain",
   },
   contentWrapper: {
     display: "flex",
-    maxWidth: "1200px",
-    width: "100%",
-    justifyContent: "space-between",
-    gap: "20px",
-  },
-  leftBox: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
+    width: "95%",
+    flex: 1, // 전체 높이 차지
+    padding: "30px",
   },
   rightBox: {
     flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "var(--blue500)",
+    width: "230%",
+    minHeight: "800px",
+    padding: "20px",
+    borderRadius: "10px",
+    // marginBottom: "150px",
   },
 }
 

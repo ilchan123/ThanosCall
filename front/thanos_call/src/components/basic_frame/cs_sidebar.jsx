@@ -4,11 +4,14 @@ import CSButtonGroup from "./cs_buttongrp"
 import CallActionGroup from "./call_action_buttongrp"
 import Logo from "../../assets/images/Logo_Thanos_white.svg"
 
-const CSSideBar = () => {
+const CSSideBar = ({ setSelectedTab, selectedTab }) => {
   return (
     <div style={styles.container}>
       <img style={styles.logoimage} src={Logo} alt="Logo" />
-      <CSButtonGroup style={styles.buttonGroup} />
+      <CSButtonGroup
+        setSelectedTab={setSelectedTab}
+        selectedTab={selectedTab}
+      />
       <CSProfileCard />
       <CallActionGroup />
     </div>
