@@ -56,7 +56,6 @@ const DataFrame = ({ collectionName }) => {
   )
 }
 
-// 테이블 스타일
 const tableStyles = {
   container: {
     height: "723px",

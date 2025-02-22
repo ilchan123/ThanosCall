@@ -14,7 +14,7 @@ const Login_Page = () => {
   const handleLogin = async () => {
     const result = await loginWithFirestore(id, password)
     if (result.success) {
-      alert("로그인 성공!")
+      alert(STRINGS.LOGIN_FRAME.LOGIN_FORM.LOGIN_SUCCESS)
       navigate("/call_center")
     } else {
       setErrorMessage(result.message)
