@@ -26,7 +26,7 @@ code {
   --gray100: #f3f3f3;
 
   --white: #ffffff;
-
+  --blue600: #184aec;
   --blue500: #003e79;
   --blue400: #4485fb;
   --blue300: #1e90ff; /*포인트 컬러*/
@@ -36,7 +36,7 @@ code {
 
   --red100: #ea0000;
   --red200: #ff8c8c;
-
+  --red300: #da7314;
   --black100: #000000;
 
   /* 쉐도우 컬러 정의 */
