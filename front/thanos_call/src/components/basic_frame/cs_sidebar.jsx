@@ -4,7 +4,7 @@ import CSButtonGroup from "./cs_buttongrp"
 import CallActionGroup from "./call_action_buttongrp"
 import Logo from "../../assets/images/Logo_Thanos_white.svg"
 
-const CSSideBar = ({ setSelectedTab, selectedTab }) => {
+const CSSideBar = ({ setSelectedTab, selectedTab, setIsUploadModalOpen }) => {
   return (
     <div style={styles.container}>
       <img style={styles.logoimage} src={Logo} alt="Logo" />
@@ -13,7 +13,7 @@ const CSSideBar = ({ setSelectedTab, selectedTab }) => {
         selectedTab={selectedTab}
       />
       <CSProfileCard />
-      <CallActionGroup />
+      <CallActionGroup setIsUploadModalOpen={setIsUploadModalOpen} />{" "}
     </div>
   )
 }
@@ -27,7 +27,7 @@ const styles = {
     backgroundColor: "var(--blue300)",
     paddingTop: "30px",
     gap: "20px",
-    width: "310px",
+    width: "300px",
     minWidth: "290px",
   },
   logoimage: {
