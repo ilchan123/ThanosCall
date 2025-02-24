@@ -1,15 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import DataFrame from "./data_frame"
 import SearchFilterBar from "./search_filter_bar"
 
 const CSListManage = () => {
+  const [filters, setFilters] = useState({
+    consultant: "ALL",
+    category: "ALL",
+    progress: "ALL",
+    search: "",
+  })
+
   return (
     <div style={styles.container}>
       <div style={styles.fullWidth}>
-        <SearchFilterBar />
+        <SearchFilterBar setFilters={setFilters} />
       </div>
       <div style={{ ...styles.tableContainer, ...styles.fullWidth }}>
-        <DataFrame collectionName="order" />
+        <DataFrame collectionName="consult" filters={filters} />
       </div>
     </div>
   )
