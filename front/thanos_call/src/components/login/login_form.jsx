@@ -3,17 +3,20 @@ import { useNavigate } from "react-router-dom"
 import LoginButton from "../login/login_button_box"
 import LoginInput from "../login/login_input_box"
 import { loginWithFirestore } from "../../services/authService"
+import { useUser } from "../../context/UserContext"
 import { STRINGS } from "../../config/string"
 
 const Login_Page = () => {
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const { setUser } = useUser()
   const navigate = useNavigate()
 
   const handleLogin = async () => {
     const result = await loginWithFirestore(id, password)
     if (result.success) {
+      setUser(result.user)
       alert(STRINGS.LOGIN_FRAME.LOGIN_FORM.LOGIN_SUCCESS)
       navigate("/call_center")
     } else {
@@ -47,6 +50,9 @@ const styles = {
     alignItems: "center",
     width: "100%",
     maxWidth: "360px",
+    backgroundColor: "var(--white)",
+    padding: "20px",
+    borderRadius: "8px",
   },
   error: {
     color: "var(--red100)",
