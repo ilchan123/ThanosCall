@@ -1,27 +1,25 @@
-import React, { useState } from "react"
+import React from "react"
 import CSButton from "./cs_button"
 import { STRINGS } from "../../config/string"
 
-const CSButtonGroup = () => {
-  const [activeIndex, setActiveIndex] = useState(1)
-
+const CSButtonGroup = ({ setSelectedTab, selectedTab }) => {
   return (
     <div style={styles.wrapper}>
       <div style={styles.container}>
         <CSButton
           label={STRINGS.BASIC_FRAME.CSButtonGroup.CS_MANAGE}
-          isActive={activeIndex === 0}
-          onClick={() => setActiveIndex(0)}
+          isActive={selectedTab === "CS_MANAGE"}
+          onClick={() => setSelectedTab("CS_MANAGE")}
         />
         <CSButton
           label={STRINGS.BASIC_FRAME.CSButtonGroup.CS_MENUAL}
-          isActive={activeIndex === 1}
-          onClick={() => setActiveIndex(1)}
+          isActive={selectedTab === "CS_MENUAL"}
+          onClick={() => setSelectedTab("CS_MENUAL")}
         />
         <CSButton
           label={STRINGS.BASIC_FRAME.CSButtonGroup.CS_DATA}
-          isActive={activeIndex === 2}
-          onClick={() => setActiveIndex(2)}
+          isActive={selectedTab === "CS_DATA"}
+          onClick={() => setSelectedTab("CS_DATA")}
         />
       </div>
     </div>
