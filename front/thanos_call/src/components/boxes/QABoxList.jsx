@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import FAQItem from "./QABox"
 import { STRINGS } from "../../config/string"
 const FAQList = ({ searchQuery }) => {
-  const [activeIndex, setActiveIndex] = useState(null) // 🔹 현재 열린 항목 추적
+  const [activeIndex, setActiveIndex] = useState(null)
 
   const faqs = [
     {
@@ -67,7 +67,7 @@ const FAQList = ({ searchQuery }) => {
 const styles = {
   scrollContainer: {
     height: "700px",
-    maxHeight: "730px",
+    maxHeight: "800px",
     overflowY: "auto",
     width: "auto",
     maxWidth: "600px",

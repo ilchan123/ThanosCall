@@ -81,7 +81,7 @@ const styles = {
     boxShadow: "var(--box-shadow-overlay)",
     listStyle: "none",
     padding: "4px 0",
-    zIndex: 100,
+    zIndex: "10",
   },
   dropdownItem: {
     fontFamily: "Pretendard-medium",
