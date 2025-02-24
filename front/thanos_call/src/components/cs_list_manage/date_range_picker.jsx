@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import { FaRegCalendarAlt } from "react-icons/fa"
 import { format } from "date-fns"
 import ko from "date-fns/locale/ko"
-
+import { STRINGS } from "../../config/string"
 const DateRangePicker = () => {
   const [startDate, setStartDate] = useState(new Date(2025, 2, 15))
   const [endDate, setEndDate] = useState(new Date(2025, 5, 25))
@@ -56,7 +56,7 @@ const DateRangePicker = () => {
 
           <div style={styles.buttonContainer}>
             <button style={styles.applyButton} onClick={applyDateRange}>
-              적용
+              {STRINGS.CS_LIST_MANAGE.DATE_RANGE_PICKER}
             </button>
           </div>
         </div>
@@ -84,11 +84,12 @@ const styles = {
     boxShadow: "--text-box-shadow",
     border: "1px solid var(--white)",
     cursor: "pointer",
+    minWidth: "280px",
     width: "fit-content",
     fontSize: "20px",
   },
   icon: {
-    marginLeft: "8px",
+    marginLeft: "30px",
     color: "var(--gray500)",
     fontSize: "20px",
     cursor: "pointer",

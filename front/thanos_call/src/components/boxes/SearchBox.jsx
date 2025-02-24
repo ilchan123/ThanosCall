@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Search } from "lucide-react"
 import { STRINGS } from "../../config/string"
-
 const SearchBox = ({ placeholder, onSearch }) => {
   const [query, setQuery] = useState("")
 
@@ -11,13 +10,11 @@ const SearchBox = ({ placeholder, onSearch }) => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder={
-          placeholder || STRINGS.CS_LIST_MANAGE.SEARCHBOX.SEARCH_TEXT
-        }
+        placeholder={placeholder || STRINGS.BOXES.SEARCHBOX}
         style={styles.input}
       />
       <button style={styles.button} onClick={() => onSearch(query)}>
-        <Search size={20} color="var(--gray500)" style={styles.icon} />
+        <Search size={20} color="var(--gray600)" />
       </button>
     </div>
   )
@@ -25,31 +22,26 @@ const SearchBox = ({ placeholder, onSearch }) => {
 
 const styles = {
   container: {
-    display: "flex",
-    alignItems: "center",
-    width: "20%",
-    minWidth: "140px",
-    maxWidth: "550px",
-    height: "45px",
+    fontFamily: "Pretendard-bold",
+    fontWeight: "600",
+    position: "relative",
+    width: "600px",
+    height: "38px",
     backgroundColor: "var(--white)",
     borderRadius: "10px",
-    border: "1px solid var(--white)",
-    padding: "0 10px",
-    boxShadow: "var(--text-box-shadow)",
+    display: "flex",
+    alignItems: "center",
+    border: "2px solid var(--gray350)",
+    padding: "5px 10px",
   },
   input: {
-    fontFamily: "Pretendard-medium",
-    fontWeight: "300",
-    fontSize: "16px",
     flex: 1,
     border: "none",
     outline: "none",
-    padding: "5px",
-    color: "var(--black100)",
+    fontSize: "14px",
+    padding: "8px",
+    color: "var(--gray700)",
     backgroundColor: "transparent",
-    whiteSpace: "nowrap",
-    textOverflow: "ellipsis",
-    boxSizing: "border-box",
   },
   button: {
     backgroundColor: "transparent",
@@ -57,15 +49,6 @@ const styles = {
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
-    padding: "0",
-    width: "40px",
-    height: "40px",
-    boxSizing: "border-box",
-  },
-  icon: {
-    width: "20px",
-    height: "20px",
   },
 }
 

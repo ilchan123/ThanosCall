@@ -1,10 +1,16 @@
 import { useState } from "react"
 import DropdownButton from "./dropdown_button"
-
+import { STRINGS } from "../../config/string"
 const DropdownButtonGroup = () => {
-  const [selectedConsultant, setSelectedConsultant] = useState("상담자")
-  const [selectedCategory, setSelectedCategory] = useState("카테고리")
-  const [selectedStatus, setSelectedStatus] = useState("완료 여부")
+  const [selectedConsultant, setSelectedConsultant] = useState(
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CONSULTER
+  )
+  const [selectedCategory, setSelectedCategory] = useState(
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CATEGORY
+  )
+  const [selectedStatus, setSelectedStatus] = useState(
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.COMPLETE_CHECK
+  )
 
   // 임시 데이터
   const consultants = ["이종민 매니저", "김민수 팀장", "박서준 대표"]
