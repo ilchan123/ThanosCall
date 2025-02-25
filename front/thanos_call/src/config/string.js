@@ -42,6 +42,7 @@ export const STRINGS = {
       TAKE_IT: "가져오기",
       VOICE_FILE_TAKE: "음성 파일 가져오기",
       CLOSE: "닫기",
+      CHECK: "확인",
     },
   },
   CS_LIST_MANAGE: {
