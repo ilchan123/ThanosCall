@@ -27,9 +27,14 @@ const FileUploadModal = ({ onClose }) => {
         <div style={styles.detail}>
           {STRINGS.BASIC_FRAME.FILE_UPLOAD_MODAL.VOICE_FILE_TAKE}
         </div>
-        <button style={styles.button} onClick={onClose}>
-          {STRINGS.BASIC_FRAME.FILE_UPLOAD_MODAL.CLOSE}
-        </button>
+        <div style={styles.button_grp}>
+          <button style={styles.button} onClick={onClose}>
+            {STRINGS.BASIC_FRAME.FILE_UPLOAD_MODAL.CHECK}
+          </button>
+          <button style={styles.button} onClick={onClose}>
+            {STRINGS.BASIC_FRAME.FILE_UPLOAD_MODAL.CLOSE}
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -77,10 +82,15 @@ const styles = {
   fileInput: {
     display: "none",
   },
+  button_grp: {
+    flexDirection: "row",
+    gap: "50px",
+  },
   button: {
     backgroundColor: "var(--blue500)",
     color: "var(--white)",
     padding: "10px 20px",
+    margin: "5px",
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
