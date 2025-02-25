@@ -30,10 +30,10 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: "8px",
-    backgroundColor: "transparent", 
+    backgroundColor: "transparent",
     color: "#000000",
     padding: "8px 16px",
-    borderRadius: "20px", 
+    borderRadius: "20px",
     fontSize: "16px",
     border: "2px solid #CCCCCC",
     cursor: "pointer",
@@ -45,8 +45,9 @@ const styles = {
     justifyContent: "center",
     width: "22px",
     height: "22px",
-    backgroundColor: "#2563EB", 
-    borderRadius: "50%", 
+    backgroundColor: "#2563EB",
+    borderRadius: "50%",
+  },
 }
 
 export default CSFooterButtons
