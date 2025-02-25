@@ -1,15 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import DataFrame from "./data_frame"
 import SearchFilterBar from "./search_filter_bar"
 
 const CSListManage = () => {
+  const [filters, setFilters] = useState({ filter: "ALL", search: "" })
+
   return (
     <div style={styles.container}>
       <div style={styles.fullWidth}>
-        <SearchFilterBar />
+        <SearchFilterBar setFilters={setFilters} />
       </div>
       <div style={{ ...styles.tableContainer, ...styles.fullWidth }}>
-        <DataFrame collectionName="consult" />
+        <DataFrame collectionName="consult" filters={filters} />
       </div>
     </div>
   )
@@ -26,7 +28,7 @@ const styles = {
     flexDirection: "column",
   },
   fullWidth: {
-    width: "100%",
+    width: "97%",
   },
   tableContainer: {
     width: "100%",

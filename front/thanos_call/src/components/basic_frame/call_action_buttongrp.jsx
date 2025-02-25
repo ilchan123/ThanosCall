@@ -1,21 +1,31 @@
 import React, { useState } from "react"
 import CallActionButton from "./call_action_button"
 
-const CallActionGroup = () => {
-  // 상태 추가
-  const [clickedType, setClickedType] = useState(null)
+const CallActionGroup = ({ setIsUploadModalOpen }) => {
+  const [activeButton, setActiveButton] = useState(null)
+
+  const handleButtonClick = (type) => {
+    setActiveButton(type)
+    if (type === "accept") {
+      setIsUploadModalOpen(true)
+    }
+
+    setTimeout(() => {
+      setActiveButton(null)
+    }, 300)
+  }
 
   return (
     <div style={styles.container}>
       <CallActionButton
         type="accept"
-        isClicked={clickedType === "accept"}
-        onClick={() => setClickedType("accept")}
+        isClicked={activeButton === "accept"}
+        onClick={() => handleButtonClick("accept")}
       />
       <CallActionButton
         type="decline"
-        isClicked={clickedType === "decline"}
-        onClick={() => setClickedType("decline")}
+        isClicked={activeButton === "decline"}
+        onClick={() => handleButtonClick("decline")}
       />
     </div>
   )
@@ -30,6 +40,7 @@ const styles = {
     backgroundColor: "var(--blue300)",
     padding: "10px",
     borderRadius: "10px",
+    position: "relative",
   },
 }
 

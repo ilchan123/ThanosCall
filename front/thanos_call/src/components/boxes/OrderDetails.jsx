@@ -119,6 +119,7 @@ const styles = {
     padding: "15px",
     backgroundColor: "var(--white)",
     height: "270px",
+    marginBottom: "5px",
   },
 }
 

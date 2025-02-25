@@ -1,41 +1,87 @@
 import React, { useState } from "react"
 import DateRangePicker from "./date_range_picker"
-import DropdownButtonGroup from "./dropdown_buttongrp"
+import DropdownButton from "./dropdown_button"
 import SearchBox from "./search_box"
+import { STRINGS } from "../../config/string"
 
 const SearchFilterBar = ({ setFilters }) => {
-  const [dateRange, setDateRange] = useState(null)
-  const [consultant, setConsultant] = useState("")
-  const [category, setCategory] = useState("")
-  const [status, setStatus] = useState("")
-  const [search, setSearch] = useState("")
+  const [selectedConsultant, setSelectedConsultant] = useState("ALL")
+  const [selectedCategory, setSelectedCategory] = useState("ALL")
+  const [selectedProgress, setSelectedProgress] = useState("ALL")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [dateRange, setDateRange] = useState({ startDate: null, endDate: null })
 
-  const applyFilters = () => {
+  const handleFilterChange = (type, option) => {
+    if (type === "consultant") setSelectedConsultant(option)
+    if (type === "category") setSelectedCategory(option)
+    if (type === "progress") setSelectedProgress(option)
+
     setFilters({
-      dateRange,
-      consultant,
-      category,
-      status,
-      search,
+      consultant: type === "consultant" ? option : selectedConsultant,
+      category: type === "category" ? option : selectedCategory,
+      progress: type === "progress" ? option : selectedProgress,
+      search: searchQuery,
+      ...dateRange,
+    })
+  }
+
+  const handleSearch = (query) => {
+    setSearchQuery(query)
+    setFilters({
+      consultant: selectedConsultant,
+      category: selectedCategory,
+      progress: selectedProgress,
+      search: query,
+      ...dateRange,
+    })
+  }
+
+  const handleDateChange = (range) => {
+    setDateRange(range)
+    setFilters({
+      consultant: selectedConsultant,
+      category: selectedCategory,
+      progress: selectedProgress,
+      search: searchQuery,
+      ...range,
     })
   }
 
   return (
     <div style={styles.container}>
-      <DateRangePicker
-        setDateRange={setDateRange}
-        applyFilters={applyFilters}
+      <DateRangePicker onApply={handleDateChange} />
+      <DropdownButton
+        options={[
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.ALL,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CONSULTANTS.CONSULTANT1,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CONSULTANTS.CONSULTANT2,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CONSULTANTS.CONSULTANT3,
+        ]}
+        onSelect={(option) => handleFilterChange("consultant", option)}
+        defaultLabel={STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CONSULTER}
       />
-      <DropdownButtonGroup
-        setConsultant={setConsultant}
-        setCategory={setCategory}
-        setStatus={setStatus}
-        applyFilters={applyFilters}
+      <DropdownButton
+        options={[
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.ALL,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CATEGORIES.CATE1,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CATEGORIES.CATE2,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CATEGORIES.CATE3,
+        ]}
+        onSelect={(option) => handleFilterChange("category", option)}
+        defaultLabel={STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.CATEGORY}
+      />
+      <DropdownButton
+        options={[
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.ALL,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.STATUES.STATUE1,
+          STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.STATUES.STATUE2,
+        ]}
+        onSelect={(option) => handleFilterChange("progress", option)}
+        defaultLabel={STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.COMPLETE_CHECK}
       />
       <SearchBox
-        style={styles.search}
-        setSearch={setSearch}
-        applyFilters={applyFilters}
+        placeholder={STRINGS.CS_LIST_MANAGE.SEARCH_FILTER_BAR.SEARCH_INPUT}
+        onSearch={handleSearch}
       />
     </div>
   )
@@ -49,9 +95,10 @@ const styles = {
     backgroundColor: "var(--blue500)",
     borderRadius: "8px",
     height: "80px",
-  },
-  search: {
-    marginLeft: "auto",
+    width: "100%",
+    padding: "10px",
+    position: "relative",
+    zIndex: "10",
   },
 }
 

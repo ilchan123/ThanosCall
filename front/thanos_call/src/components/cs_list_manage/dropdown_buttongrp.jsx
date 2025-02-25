@@ -1,6 +1,7 @@
 import { useState } from "react"
 import DropdownButton from "./dropdown_button"
 import { STRINGS } from "../../config/string"
+
 const DropdownButtonGroup = () => {
   const [selectedConsultant, setSelectedConsultant] = useState(
     STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CONSULTER
@@ -11,11 +12,19 @@ const DropdownButtonGroup = () => {
   const [selectedStatus, setSelectedStatus] = useState(
     STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.COMPLETE_CHECK
   )
-
-  // 임시 데이터
-  const consultants = ["이종민 매니저", "김민수 팀장", "박서준 대표"]
-  const categories = ["제품", "서비스", "기타"]
-  const statuses = ["완료", "진행 중", "보류"]
+  const consultants = [
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CONSULTANTS.CONSULTANT1,
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CONSULTANTS.CONSULTANT2,
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CONSULTANTS.CONSULTANT3,
+  ]
+  const categories = [
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CATEGORIES.CATE1,
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.CATEGORIES.CATE2,
+  ]
+  const statuses = [
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.STATUES.STATUE1,
+    STRINGS.CS_LIST_MANAGE.DROPDOWN_BUTTON_GRP.STATUES.STATUE2,
+  ]
 
   return (
     <div style={styles.container}>

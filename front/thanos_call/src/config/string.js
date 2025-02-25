@@ -1,36 +1,4 @@
 export const STRINGS = {
-  BASIC_FRAME: {
-    CALL_ACTION_BUTTON: {
-      ACCEPT_SMALL: "accept",
-      ACCEPT: "Accept",
-      DECLINE: "Decline",
-    },
-    CSButtonGroup: {
-      CS_MANAGE: "CS 내역 관리",
-      CS_MENUAL: "CS 메뉴얼 확인",
-      CS_DATA: "CS 데이터 분석",
-    },
-    CSPROFILECARD: {
-      USER_AGE: "나이 : ",
-      USER_AGE_ACTUAL: "",
-      USER_TODAY_COUNSEL_COUNT: "당일 상담 건수 : ",
-      USER_TODAY_COUNSEL_COUNT_ACTUAL: "{cases}통",
-      USER_TODAY_COUNSEL_TIME: "당일 상담 시간 :",
-      RANK: "{RANK}",
-      RANK_REPLACE: "신입",
-      NAME: "{NAME}",
-      NAME_REPLACE: "홍길동",
-      AGE: "{AGE}",
-      AGE_REPLACE: "21",
-      CASES: "{CASES}",
-      CASES_REPLACE: "21",
-      DURATION: "{DURATION}",
-      DURATION_REPLACE: "52분 13초",
-    },
-    CS_HEADER: {
-      BACK_KEY: "← 뒤로 가기",
-    },
-  },
   LOGIN_FRAME: {
     LOGIN_BUTTON: {
       LOGIN: "로그인",
@@ -43,10 +11,60 @@ export const STRINGS = {
     LOGIN_FORM: {
       EMPLOYEE_NUMBER: "사원 번호 or 사업자 번호",
       PASSWORD: "비밀번호",
-      LOGIN_SUCCESS: "{name}님, 로그인 성공!",
+      LOGIN_SUCCESS: "로그인 성공!",
+    },
+  },
+  BASIC_FRAME: {
+    CALL_ACTION_BUTTON: {
+      ACCEPT_SMALL: "accept",
+      ACCEPT: "Accept",
+      DECLINE: "Decline",
+    },
+    CSButtonGroup: {
+      CS_MANAGE: "CS 내역 관리",
+      CS_MENUAL: "CS 메뉴얼 확인",
+      CS_DATA: "CS 데이터 분석",
+    },
+    CS_HEADER: {
+      BACK_KEY: "← 뒤로 가기",
+    },
+    CS_PROFILECARD: {
+      NO_RANK: "직급 없음",
+      NO_NAME: "이름 없음",
+      NO_INFO: "정보 없음",
+      AGE: "나이 : 만",
+      USER_AGE: "나이 : 만 {count} 세",
+      USER_CONSULT_COUNT: "당일 상담 건수 : {count} 통",
+      USER_CONSULT_TIME: "당일 상담 시간 : {count} 분",
+    },
+    DATA_FRAME: "데이터가 없습니다.",
+    FILE_UPLOAD_MODAL: {
+      TAKE_IT: "가져오기",
+      VOICE_FILE_TAKE: "음성 파일 가져오기",
+      CLOSE: "닫기",
     },
   },
   CS_LIST_MANAGE: {
+    CONSULT_DETAIL: {
+      BACK: "뒤로 가기",
+      CS_CONSULT_DETAIL: "CS 상담 세부내역",
+      NO_DATE_INFO: "날짜 정보 없음",
+      NO_CATEGORY_INFO: "카테고리 없음",
+      CUSTOMER: "문의자 : ",
+      CONSULTER: "상담 매니저 : ",
+      CONSULT_DATE: "상담 일자 : ",
+      CONSULT_CATEGORY: "상담 카테고리 : ",
+      PURCHASE_CHECK: "구매 여부 : ",
+      ORDER_NUMBER: "주문 번호 : ",
+      ITEM_CODE: "제품 코드 : ",
+      CONSULT_ADD: "상담 특이사항 : ",
+      CONSULT_TIME: "상담 시간 : ",
+      CONSULT_BRIEF: "상담 내용 요약",
+      CONSULT_BRIEF_NO: "내용 없음",
+      CONSULT_DETAILS: "상담 세부 내역",
+      CONSULT_DETAILS_NO: "상세 내역 없음",
+      NO: "없음",
+    },
     SEARCHBOX: {
       SEARCH_TEXT: "검색 내용을 입력하세요",
     },
@@ -54,6 +72,40 @@ export const STRINGS = {
       CONSULTER: "상담자",
       CATEGORY: "카테고리",
       COMPLETE_CHECK: "완료 여부",
+      CONSULTANTS: {
+        CONSULTANT1: "김사원",
+        CONSULTANT2: "이사원",
+        CONSULTANT3: "삼사원",
+      },
+      CATEGORIES: {
+        CATE1: "배송",
+        CATE2: "교환",
+      },
+      STATUES: {
+        STATUE1: "완료",
+        STATUE2: "진행 중",
+      },
+    },
+    SEARCH_FILTER_BAR: {
+      CONSULTER: "상담자",
+      CATEGORY: "카테고리",
+      COMPLETE_CHECK: "완료 여부",
+      SEARCH_INPUT: "검색어를 입력하세요",
+      ALL: "ALL",
+      CONSULTANTS: {
+        CONSULTANT1: "김사원",
+        CONSULTANT2: "이사원",
+        CONSULTANT3: "삼사원",
+      },
+      CATEGORIES: {
+        CATE1: "배송",
+        CATE2: "교환",
+        CATE3: "환불",
+      },
+      STATUES: {
+        STATUE1: "완료",
+        STATUE2: "진행 중",
+      },
     },
     DATE_RANGE_PICKER: "적용",
   },

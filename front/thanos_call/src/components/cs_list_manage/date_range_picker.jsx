@@ -5,16 +5,14 @@ import { FaRegCalendarAlt } from "react-icons/fa"
 import { format } from "date-fns"
 import ko from "date-fns/locale/ko"
 import { STRINGS } from "../../config/string"
-const DateRangePicker = () => {
-  const [startDate, setStartDate] = useState(new Date(2025, 2, 15))
+
+const DateRangePicker = ({ onApply }) => {
+  const [startDate, setStartDate] = useState(new Date(2025, 1, 15))
   const [endDate, setEndDate] = useState(new Date(2025, 5, 25))
   const [showPicker, setShowPicker] = useState(false)
-  const [appliedStartDate, setAppliedStartDate] = useState(startDate)
-  const [appliedEndDate, setAppliedEndDate] = useState(endDate)
 
   const applyDateRange = () => {
-    setAppliedStartDate(startDate)
-    setAppliedEndDate(endDate)
+    onApply({ startDate, endDate })
     setShowPicker(false)
   }
 
@@ -22,8 +20,7 @@ const DateRangePicker = () => {
     <div style={styles.container}>
       <div style={styles.dateInput} onClick={() => setShowPicker(!showPicker)}>
         <span>
-          {format(appliedStartDate, "yyyy. M. d.")} ~{" "}
-          {format(appliedEndDate, "yyyy. M. d.")}
+          {format(startDate, "yyyy. M. d.")} ~ {format(endDate, "yyyy. M. d.")}
         </span>
         <FaRegCalendarAlt style={styles.icon} />
       </div>

@@ -25,6 +25,8 @@ export const loginWithFirestore = async (id, password) => {
           age: userData.age,
           rank: userData.rank,
           img: userData.img,
+          consult_count: userData.consult_count ?? 0,
+          consult_time: userData.consult_time ?? 0,
         }
       }
     })
