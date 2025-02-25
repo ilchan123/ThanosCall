@@ -5,6 +5,7 @@ import {
   getDocs,
   query,
   where,
+  onSnapshot,
 } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -18,4 +19,4 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app, "infinitystone")
-export { db, collection, getDocs, query, where }
+export { db, collection, getDocs, query, where, onSnapshot }
