@@ -1,17 +1,16 @@
 import React from "react"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { STRINGS } from "../../config/string"
-
+import PlayButton from "./play_button"
 export default function CSConsultationDetail({ consultData, onClose }) {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <button style={styles.button} onClick={onClose}>
-          <ArrowBackIcon style={styles.icon} />{" "}
-          {STRINGS.CS_LIST_MANAGE.CONSULT_DETAIL.BACK}
-        </button>
-
         <h2 style={styles.title}>
+          <button style={styles.button} onClick={onClose}>
+            <ArrowBackIcon style={styles.icon} />{" "}
+            {STRINGS.CS_LIST_MANAGE.CONSULT_DETAIL.BACK}
+          </button>
           {STRINGS.CS_LIST_MANAGE.CONSULT_DETAIL.CS_CONSULT_DETAIL}
         </h2>
         <p style={styles.subtitle}>
@@ -106,9 +105,14 @@ export default function CSConsultationDetail({ consultData, onClose }) {
             </div>
 
             <div style={styles.contentBox}>
-              <h3 style={styles.sectionTitle}>
-                {STRINGS.CS_LIST_MANAGE.CONSULT_DETAIL.CONSULT_DETAILS}
-              </h3>
+              <div style={styles.sectionTitleContainer}>
+                <h3 style={styles.sectionTitle}>
+                  {STRINGS.CS_LIST_MANAGE.CONSULT_DETAIL.CONSULT_DETAILS}
+                </h3>
+                <div style={styles.buttonWrapper}>
+                  <PlayButton />
+                </div>
+              </div>
               <p style={styles.paragraph}>
                 {consultData.consult_details ||
                   STRINGS.CS_LIST_MANAGE.CONSULT_DETAIL.CONSULT_DETAILS_NO}
@@ -123,27 +127,24 @@ export default function CSConsultationDetail({ consultData, onClose }) {
 
 const styles = {
   container: {
-    padding: "24px",
     backgroundColor: "var(--gray100)",
-    minHeight: "100vh",
-    display: "flex",
-    marginTop: "40px",
+    minHeight: "60vh",
+    marginTop: "50px",
     marginBottom: "40px",
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
   card: {
-    width: "100%",
-    margin: "10px",
-    maxWidth: "768px",
+    width: "90%",
+    margin: "30px",
+    maxWidth: "740px",
     backgroundColor: "var(--white)",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     borderRadius: "8px",
-    paddingTop: "5px",
-    paddingBottom: "20px",
+    paddingBottom: "25px",
   },
   button: {
-    marginTop: "3px",
     margin: "5px",
     display: "flex",
     alignItems: "center",
@@ -159,26 +160,26 @@ const styles = {
     fontSize: "35px",
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: "16px",
+    marginBottom: "5px",
   },
   subtitle: {
     fontSize: "20px",
     textAlign: "center",
     color: "var(--black100)",
-    marginTop: "8px",
+    marginTop: "3px",
     fontWeight: "300",
   },
   section: {
-    marginTop: "24px",
-    paddingTop: "16px",
+    paddingTop: "15px",
     borderTop: "1px solid var(--black100)",
+    lineHeight: "0.2",
+    marginBottom: "10px",
   },
   grid: {
     justifyContent: "center",
     textAlign: "center",
     display: "grid",
     gridTemplateColumns: "1fr",
-    gap: "16px",
     color: "var(--black100)",
   },
   textLeft: {
@@ -189,17 +190,16 @@ const styles = {
   contentContainer: {
     display: "flex",
     justifyContent: "flex-end",
-    marginTop: "24px",
-    width: "670px",
+    width: "640px",
   },
   contentColumn: {
     display: "grid",
     gridTemplateColumns: "1fr",
-    gap: "16px",
-    width: "560px",
+    gap: "5px",
+    width: "520px",
   },
   contentBox: {
-    padding: "16px",
+    padding: "5px",
     borderRadius: "8px",
     backgroundColor: "var(--gray100)",
     border: "1px solid var(--black100)",
@@ -211,11 +211,23 @@ const styles = {
     marginBottom: "20px",
     marginTop: "10px",
     textAlign: "left",
+    flexDirection: "row",
+  },
+  sectionTitleContainer: {
+    display: "flex",
+    gap: "10px",
+    paddingTop: "3px",
+    flexWrap: "nowrap",
+    minHeight: "35px",
+  },
+  buttonWrapper: {
+    display: "flex",
+    alignItems: "center",
+    height: "10%", // 부모 높이에 맞춰 버튼을 정렬
   },
   list: {
     listStyleType: "disc",
     paddingLeft: "20px",
-    marginTop: "8px",
     color: "var(--black100)",
   },
   paragraph: {
