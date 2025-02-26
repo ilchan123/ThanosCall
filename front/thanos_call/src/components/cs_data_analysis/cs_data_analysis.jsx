@@ -1,22 +1,15 @@
-import React, { useState } from "react"
-import DataFrame from "./data_frame"
-import SearchFilterBar from "./search_filter_bar"
+import React from "react"
+import { Outlet } from "react-router-dom"
+import BtnGrpDF from "./buttons/BtnGrpDF"
 
 const CSListManage = () => {
-  const [filters, setFilters] = useState({
-    consultant: "ALL",
-    category: "ALL",
-    progress: "ALL",
-    search: "",
-  })
-
   return (
     <div style={styles.container}>
       <div style={styles.fullWidth}>
-        <SearchFilterBar setFilters={setFilters} />
-      </div>
-      <div style={{ ...styles.tableContainer, ...styles.fullWidth }}>
-        <DataFrame collectionName="consult" filters={filters} />
+        <BtnGrpDF />
+        <div style={styles.chartContainer}>
+          <Outlet />
+        </div>
       </div>
     </div>
   )
@@ -31,6 +24,14 @@ const styles = {
     borderRadius: "8px",
     display: "flex",
     flexDirection: "column",
+  },
+  chartContainer: {
+    width: "100%",
+    height: "80%",
+    // padding: "20px",
+    backgroundColor: "var(--blue500)",
+    borderRadius: "8px",
+    marginTop: "5px",
   },
   fullWidth: {
     width: "100%",

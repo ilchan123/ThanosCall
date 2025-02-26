@@ -2,7 +2,7 @@ import React from "react"
 import LogoLetter from "../../assets/images/Logo_letter_finger.svg"
 import CSListManage from "../cs_list_manage/cs_list_manage"
 import CSManualCheck from "../cs_list_manage/cs_menual_check"
-import CSDataAnalysis from "../cs_list_manage/cs_data_analysis"
+import CSDataAnalysis from "../cs_data_analysis/cs_data_analysis"
 
 const CSHeader = ({ selectedTab }) => {
   const renderContent = () => {
@@ -54,7 +54,7 @@ const styles = {
   contentWrapper: {
     display: "flex",
     width: "95%",
-    flex: 1, // 전체 높이 차지
+    flex: 1,
     padding: "30px",
   },
   rightBox: {
