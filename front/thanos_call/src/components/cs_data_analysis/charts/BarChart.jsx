@@ -9,13 +9,16 @@ import {
   CartesianGrid,
 } from "recharts"
 import DropdownButton from "../../cs_list_manage/dropdown_button"
+import { STRINGS } from "../../../config/string"
 
 const BarChart = ({ data, title, isHorizontal = false }) => {
-  const [selectedPeriod, setSelectedPeriod] = useState("기간")
+  const [selectedPeriod, setSelectedPeriod] = useState(
+    STRINGS.CS_DATA_ANALYSIS.CHARTS.BARCHART.PERIOD
+  )
 
   const handlePeriodChange = (value) => {
     setSelectedPeriod(value)
-    console.log("선택된 기간:", value)
+    console.log(STRINGS.CS_DATA_ANALYSIS.CHARTS.BARCHART.SELEC_PERIOD, value)
   }
 
   return (
@@ -24,7 +27,13 @@ const BarChart = ({ data, title, isHorizontal = false }) => {
         <h2 style={styles.title}>Total</h2>
 
         <DropdownButton
-          options={["1주", "1개월", "3개월", "6개월", "1년"]}
+          options={[
+            STRINGS.CS_DATA_ANALYSIS.CHARTS.BARCHART.TIME_WEEK,
+            STRINGS.CS_DATA_ANALYSIS.CHARTS.BARCHART.TIME_MONTH1,
+            STRINGS.CS_DATA_ANALYSIS.CHARTS.BARCHART.TIME_MONTH3,
+            STRINGS.CS_DATA_ANALYSIS.CHARTS.BARCHART.TIME_MONTH6,
+            STRINGS.CS_DATA_ANALYSIS.CHARTS.BARCHART.TIME_YEAR,
+          ]}
           selectedValue={selectedPeriod}
           onSelect={handlePeriodChange}
           style={styles.dropdownButton}
@@ -74,7 +83,7 @@ const styles = {
   title: {
     fontSize: "16px",
     fontWeight: "600",
-    color: "#333",
+    color: "var(--gray800)",
     margin: 0,
   },
   chart_size: {
@@ -82,17 +91,16 @@ const styles = {
     height: "300px",
   },
   dropdownButton: {
-    width: "100px", // ✅ 드롭다운 너비 증가
-    height: "32px", // ✅ 높이 조정
+    width: "100px",
+    height: "32px",
     fontSize: "14px",
     fontWeight: "600",
-
     textAlign: "center",
-    backgroundColor: "#A3C5FC", // ✅ 드롭다운 배경색 변경 (파스텔 블루)
-    border: "1px solid #7DA6F5", // ✅ 테두리 색상 추가
+    backgroundColor: "var(--blue200)",
+    border: "1px solid var(--blue400)",
     borderRadius: "6px",
     cursor: "pointer",
-    color: "#FFFFFF", // ✅ 글자색 흰색
+    color: "var(--white)",
     padding: "5px 10px",
   },
 }

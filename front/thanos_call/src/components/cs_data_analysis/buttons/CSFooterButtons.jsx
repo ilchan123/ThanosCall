@@ -1,4 +1,5 @@
 import React from "react"
+import { STRINGS } from "../../../config/string"
 
 const CSFooterButtons = ({ onReplay }) => {
   return (
@@ -15,7 +16,7 @@ const CSFooterButtons = ({ onReplay }) => {
             <path d="M8 5v14l11-7z" />
           </svg>
         </span>
-        통화 재생
+        {STRINGS.CS_DATA_ANALYSIS.BUTTONS.VOICE_PLAY}
       </button>
     </div>
   )
@@ -31,11 +32,11 @@ const styles = {
     alignItems: "center",
     gap: "8px",
     backgroundColor: "transparent",
-    color: "#000000",
+    color: "var(--black100)",
     padding: "8px 16px",
     borderRadius: "20px",
     fontSize: "16px",
-    border: "2px solid #CCCCCC",
+    border: "2px solid var(--gray400)",
     cursor: "pointer",
     fontWeight: "bold",
   },
@@ -45,7 +46,7 @@ const styles = {
     justifyContent: "center",
     width: "22px",
     height: "22px",
-    backgroundColor: "#2563EB",
+    backgroundColor: "var(--blue500)",
     borderRadius: "50%",
   },
 }

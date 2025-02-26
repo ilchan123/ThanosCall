@@ -53,7 +53,7 @@ const styles = {
     flexDirection: "column-reverse",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "var(--white)",
     borderRadius: "12px",
     padding: "20px",
   },
@@ -62,7 +62,7 @@ const styles = {
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: "20px",
-    color: "#333",
+    color: "var(--gray800)",
   },
 }
 

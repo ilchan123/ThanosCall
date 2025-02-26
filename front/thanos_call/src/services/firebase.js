@@ -18,5 +18,5 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-const db = getFirestore(app, "infinitystone")
+const db = getFirestore(app)
 export { db, collection, getDocs, query, where, onSnapshot }

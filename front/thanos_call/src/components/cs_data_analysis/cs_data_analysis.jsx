@@ -28,7 +28,6 @@ const styles = {
   chartContainer: {
     width: "100%",
     height: "80%",
-    // padding: "20px",
     backgroundColor: "var(--blue500)",
     borderRadius: "8px",
     marginTop: "5px",

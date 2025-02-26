@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { db } from "../../services/firebase"
-import { collection, query, where, getDocs } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore"
 import { STRINGS } from "../../config/string"
+
 const OrderDetails = ({ orderId }) => {
   const [orderData, setOrderData] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -15,26 +16,16 @@ const OrderDetails = ({ orderId }) => {
       setError("")
 
       try {
-        const orderNumber = Number(orderId)
-        if (isNaN(orderNumber)) {
-          setError(STRINGS.BOXES.ORDER_DETAILS.CORREC_NUMBER)
-          setLoading(false)
-          return
-        }
+        const docRef = doc(db, "logistics", orderId)
+        const docSnap = await getDoc(docRef)
 
-        const q = query(
-          collection(db, "order"),
-          where("order_id", "==", orderNumber)
-        )
-        const querySnapshot = await getDocs(q)
+        if (docSnap.exists()) {
+          const data = docSnap.data()
 
-        if (!querySnapshot.empty) {
-          const data = querySnapshot.docs[0].data()
-
-          if (data.order_day && data.order_day.seconds) {
-            data.order_day = new Date(
-              data.order_day.seconds * 1000
-            ).toLocaleString()
+          if (data.ordered_time && data.ordered_time.seconds) {
+            data.ordered_time = new Date(
+              data.ordered_time.seconds * 1000
+            ).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
           }
 
           setOrderData(data)
@@ -61,14 +52,18 @@ const OrderDetails = ({ orderId }) => {
       {orderData && (
         <div style={styles.card}>
           <h3>
-            {STRINGS.BOXES.ORDER_DETAILS.ORDER_NUMBER} {orderData.order_id}
+            {STRINGS.BOXES.ORDER_DETAILS.ORDER_NUMBER} {orderId}
           </h3>
           <p>
             <strong>{STRINGS.BOXES.ORDER_DETAILS.NAME}</strong> {orderData.name}
           </p>
           <p>
+            <strong>{STRINGS.BOXES.ORDER_DETAILS.EMAIL}</strong>{" "}
+            {orderData.customer}
+          </p>
+          <p>
             <strong>{STRINGS.BOXES.ORDER_DETAILS.CONTACT}</strong>{" "}
-            {orderData.phone}
+            {orderData.contact}
           </p>
           <p>
             <strong>{STRINGS.BOXES.ORDER_DETAILS.ADDRESS}</strong>{" "}
@@ -76,19 +71,15 @@ const OrderDetails = ({ orderId }) => {
           </p>
           <p>
             <strong>{STRINGS.BOXES.ORDER_DETAILS.PURCHASE_DATE}</strong>{" "}
-            {orderData.order_day}
-          </p>{" "}
+            {orderData.ordered_time}
+          </p>
           <p>
             <strong>{STRINGS.BOXES.ORDER_DETAILS.PURCHASE_ITEM}</strong>{" "}
             {orderData.order_list}
           </p>
           <p>
             <strong>{STRINGS.BOXES.ORDER_DETAILS.BILL_COUNT}</strong>{" "}
-            {orderData.order_pay}원
-          </p>
-          <p>
-            <strong>{STRINGS.BOXES.ORDER_DETAILS.SHIP_REQUEST_DETAIL}</strong>{" "}
-            {orderData.order_request}
+            {orderData.order_price}원
           </p>
         </div>
       )}
@@ -96,7 +87,6 @@ const OrderDetails = ({ orderId }) => {
   )
 }
 
-// 스타일 객체
 const styles = {
   container: {
     width: "80%",
