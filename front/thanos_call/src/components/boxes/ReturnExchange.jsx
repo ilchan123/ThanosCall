@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { db } from "../../services/firebase"
-import { collection, query, where, getDocs } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore"
 import ConsultMemo from "./ConsultMemo"
 import { STRINGS } from "../../config/string"
 
@@ -17,21 +17,19 @@ const ReturnExchange = ({ orderId }) => {
       setError("")
 
       try {
-        const orderNumber = Number(orderId)
-        if (isNaN(orderNumber)) {
-          setError(STRINGS.BOXES.RETURN_EXCHANGE.CORREC_NUMBER)
-          setLoading(false)
-          return
-        }
+        const docRef = doc(db, "logistics", orderId)
+        const docSnap = await getDoc(docRef)
 
-        const q = query(
-          collection(db, "customer"),
-          where("order_id", "==", orderNumber)
-        )
-        const querySnapshot = await getDocs(q)
+        if (docSnap.exists()) {
+          const data = docSnap.data()
 
-        if (!querySnapshot.empty) {
-          const data = querySnapshot.docs[0].data()
+          // ✅ Timestamp 변환 추가
+          if (data.ordered_time && data.ordered_time.seconds) {
+            data.ordered_time = new Date(
+              data.ordered_time.seconds * 1000
+            ).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
+          }
+
           setOrderData(data)
         } else {
           setOrderData(null)
@@ -64,13 +62,13 @@ const ReturnExchange = ({ orderId }) => {
           <p>
             {STRINGS.BOXES.RETURN_EXCHANGE.RETURN_REQUEST_COUNT.replace(
               "{count}",
-              orderData.return_request
+              orderData.return
             )}
           </p>
           <p>
             {STRINGS.BOXES.RETURN_EXCHANGE.EXCHANGE_REQUEST_COUNT.replace(
               "{count}",
-              orderData.exchange_request
+              orderData.exchange
             )}
           </p>
           <p>
@@ -79,9 +77,7 @@ const ReturnExchange = ({ orderId }) => {
               orderData.insult
             )}
           </p>
-
           <hr style={styles.separator} />
-
           <ConsultMemo />
         </div>
       )}
