@@ -12,6 +12,7 @@ import {
 } from "recharts"
 import DropdownButton from "../../cs_list_manage/dropdown_button"
 import { db, collection, getDocs } from "../../../services/firebase"
+import { STRINGS } from "../../../config/string"
 
 const CSStaticsChart = () => {
   const [setPeriod] = useState("주간")
@@ -34,7 +35,7 @@ const CSStaticsChart = () => {
 
         setChartData(fetchedData)
       } catch (error) {
-        console.error("Firestore 데이터 로드 중 오류 발생:", error)
+        //
       }
     }
 
@@ -46,9 +47,14 @@ const CSStaticsChart = () => {
       <div style={styles.chartBox}>
         <div style={styles.dropdownContainer}>
           <DropdownButton
-            options={["주간", "월간"]}
+            options={[
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.CS_STATIC_CHART.WEEK,
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.CS_STATIC_CHART.MONTH,
+            ]}
             onSelect={setPeriod}
-            defaultLabel="기간"
+            defaultLabel={
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.CS_STATIC_CHART.PERIOD
+            }
           />
         </div>
 
@@ -91,7 +97,7 @@ const styles = {
     width: "100%",
     height: "750px",
     paddingTop: "120px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     borderRadius: "12px",
   },
   dropdownContainer: {

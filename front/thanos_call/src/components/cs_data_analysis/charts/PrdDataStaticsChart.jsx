@@ -14,9 +14,12 @@ import {
 import BarChart from "./BarChart"
 import PieChart from "./PieChart"
 import DropdownButton from "../../cs_list_manage/dropdown_button"
+import { STRINGS } from "../../../config/string"
 
 const UserDataStaticsChart = () => {
-  const [period, setPeriod] = useState("주간")
+  const [period, setPeriod] = useState(
+    STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.WEEK
+  )
 
   const [monthlyData, setMonthlyData] = useState([])
   const [ageData, setAgeData] = useState([])
@@ -48,8 +51,14 @@ const UserDataStaticsChart = () => {
           .find((doc) => doc.id === "count_gender")
           ?.data()
         setGenderRatioData([
-          { name: "남성", value: Number(genderData?.male) || 0 },
-          { name: "여성", value: Number(genderData?.female) || 0 },
+          {
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.MALE,
+            value: Number(genderData?.male) || 0,
+          },
+          {
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.FEMALE,
+            value: Number(genderData?.female) || 0,
+          },
         ])
 
         const againSnapshot = await getDocs(collection(db, "count_all"))
@@ -57,8 +66,16 @@ const UserDataStaticsChart = () => {
           .find((doc) => doc.id === "count_again")
           ?.data()
         setRepeatCustomerData([
-          { name: "재구매 회원", value: Number(againData?.re) || 0 },
-          { name: "미구매 회원", value: Number(againData?.non) || 0 },
+          {
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART
+              .RE_BUY_USER,
+            value: Number(againData?.re) || 0,
+          },
+          {
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART
+              .NO_BUY_USER,
+            value: Number(againData?.non) || 0,
+          },
         ])
 
         const threeMonSnapshot = await getDocs(collection(db, "count_all"))
@@ -67,21 +84,24 @@ const UserDataStaticsChart = () => {
           ?.data()
         setThreeMonthInactiveData([
           {
-            name: "10대",
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.TEEN,
             value: Number(threeMonData?.rest) || 0,
           },
           {
-            name: "20대",
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.TWIN,
             value: Number(threeMonData?.teen) || 0,
           },
           {
-            name: "30대",
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.THRE,
             value: Number(threeMonData?.twin) || 0,
           },
-          { name: "40대", value: Number(threeMonData?.four) || 0 },
+          {
+            name: STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.FOUR,
+            value: Number(threeMonData?.four) || 0,
+          },
         ])
       } catch (error) {
-        console.error("🔥 Firestore 데이터 로드 중 오류 발생:", error)
+        //
       }
     }
 
@@ -92,10 +112,18 @@ const UserDataStaticsChart = () => {
     <div style={styles.container}>
       <div style={styles.topChartsRow}>
         <div style={styles.leftChartBox}>
-          <h3 style={styles.chartTitle}>월별 회원 가입 통계</h3>
+          <h3 style={styles.chartTitle}>
+            {
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART
+                .CATEGORY_SALE_STATIC
+            }
+          </h3>
           <div style={styles.dropdownContainer}>
             <DropdownButton
-              options={["주간", "월간"]}
+              options={[
+                STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.WEEK,
+                STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART.MONTH,
+              ]}
               onSelect={setPeriod}
               defaultLabel={period}
             />
@@ -117,7 +145,10 @@ const UserDataStaticsChart = () => {
         <div style={styles.rightChartBox}>
           <BarChart
             data={ageData}
-            title="연령별 회원 수"
+            title={
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART
+                .GENERATION_COUNT
+            }
             layout="vertical"
           />{" "}
         </div>
@@ -129,10 +160,19 @@ const UserDataStaticsChart = () => {
             data={
               genderRatioData.length
                 ? genderRatioData
-                : [{ name: "데이터 없음", value: 0 }]
+                : [
+                    {
+                      name: STRINGS.CS_DATA_ANALYSIS.CHARTS
+                        .PRD_DATA_STATICS_CHART.NO_DATA,
+                      value: 0,
+                    },
+                  ]
             }
-            colors={["#E63946", "#F4F4F4"]}
-            title={"전체 남성/여성 구매 비율 : 70% / 30% "}
+            colors={["var(--red100)", "var(--gray200)"]}
+            title={
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART
+                .ALL_GENDER_PERCENT
+            }
           />
         </div>
 
@@ -141,10 +181,19 @@ const UserDataStaticsChart = () => {
             data={
               repeatCustomerData.length
                 ? repeatCustomerData
-                : [{ name: "데이터 없음", value: 0 }]
+                : [
+                    {
+                      name: STRINGS.CS_DATA_ANALYSIS.CHARTS
+                        .PRD_DATA_STATICS_CHART.NO_DATA,
+                      value: 0,
+                    },
+                  ]
             }
-            colors={["#007bff", "#F4F4F4"]}
-            title={"재구매 회원 비율 : 25%"}
+            colors={["var(--blue300)", "var(--gray200)"]}
+            title={
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART
+                .RE_BUY_PERCENT
+            }
           />
         </div>
 
@@ -153,10 +202,19 @@ const UserDataStaticsChart = () => {
             data={
               threeMonthInactiveData.length
                 ? threeMonthInactiveData
-                : [{ name: "데이터 없음", value: 0 }]
+                : [
+                    {
+                      name: STRINGS.CS_DATA_ANALYSIS.CHARTS
+                        .PRD_DATA_STATICS_CHART.NO_DATA,
+                      value: 0,
+                    },
+                  ]
             }
-            colors={["#FFA500", "#F4F4F4"]}
-            title={"3개월 이상 미구매 회원 비율 : 5%"}
+            colors={["var(--red300)", "var(--gray200)"]}
+            title={
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.PRD_DATA_STATICS_CHART
+                .THREE_MONTH_NO_BUY
+            }
           />
         </div>
       </div>
@@ -191,21 +249,21 @@ const styles = {
   leftChartBox: {
     width: "64%",
     height: "80%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     padding: "20px",
     borderRadius: "12px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    boxShadow: "var(--box-shadow-overlay)",
     position: "relative",
   },
   rightChartBox: {
     width: "36%",
     height: "80%",
     marginBottom: "10px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     fontSize: "12px",
     padding: "20px",
     borderRadius: "12px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    boxShadow: "var(--box-shadow-overlay)",
   },
   pieChartContainer: {
     display: "flex",
@@ -213,10 +271,10 @@ const styles = {
     alignItems: "center",
     width: "97.2%",
     height: "270px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     padding: "20px",
     borderRadius: "12px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    boxShadow: "var(--box-shadow-overlay)",
     gap: "10px",
   },
   pieChartItem: {

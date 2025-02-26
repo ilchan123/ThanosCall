@@ -5,7 +5,7 @@ const CSListManage = () => {
   return (
     <div style={styles.container}>
       <div style={{ ...styles.tableContainer, ...styles.fullWidth }}>
-        <DataFrame collectionName="order" />
+        <DataFrame collectionName="logistics" />
       </div>
     </div>
   )

@@ -1,6 +1,10 @@
 import React from "react"
+import { STRINGS } from "../../../config/string"
 
-const BButtonWhite = ({ text = "알아서", onClick }) => {
+const BButtonWhite = ({
+  text = STRINGS.CS_DATA_ANALYSIS.BUTTONS.TEXT,
+  onClick,
+}) => {
   return (
     <button style={styles.button} onClick={onClick}>
       {text}
@@ -12,11 +16,11 @@ const styles = {
   button: {
     fontFamily: "Pretendard-medium",
     fontWeight: "600",
-    border: "2px solid #1E90FF",
-    color: "#888888",
+    border: "2px solid var(--blue300)",
+    color: "var(--gray600)",
     padding: "8px 22px",
     borderRadius: "9999px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     fontSize: "16px",
     cursor: "pointer",
   },

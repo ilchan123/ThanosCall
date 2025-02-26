@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { db, collection, getDocs } from "../../services/firebase"
 import * as XLSX from "xlsx"
 import excelIcon from "../../assets/images/excel.svg"
+import { STRINGS } from "../../config/string"
 
 const DataFrame = ({ collectionName }) => {
   const [data, setData] = useState([])
@@ -25,7 +26,7 @@ const DataFrame = ({ collectionName }) => {
 
   const handleExcelDownload = () => {
     if (data.length === 0) {
-      alert("저장할 데이터가 없습니다.")
+      alert(STRINGS.CS_DATA_ANALYSIS.DATA_FRAME_MUL.NO_SAVE_EMPTY)
       return
     }
 
@@ -39,8 +40,14 @@ const DataFrame = ({ collectionName }) => {
   return (
     <div>
       <button style={styles.excelButton} onClick={handleExcelDownload}>
-        <img src={excelIcon} alt="엑셀 아이콘" style={styles.excelIcon} />
-        <span style={styles.excelText}>엑셀 저장</span>
+        <img
+          src={excelIcon}
+          alt={STRINGS.CS_DATA_ANALYSIS.DATA_FRAME_MUL.EXCEL_ICON}
+          style={styles.excelIcon}
+        />
+        <span style={styles.excelText}>
+          {STRINGS.CS_DATA_ANALYSIS.DATA_FRAME_MUL.EXCEL_SAVE}
+        </span>
       </button>
 
       <div style={styles.tableContainer}>
@@ -87,7 +94,7 @@ const styles = {
     alignItems: "center",
     padding: "8px 12px",
     backgroundColor: "var(--white)",
-    color: "var(--black)",
+    color: "var(--black100)",
     border: "none",
     borderRadius: "8px",
     cursor: "pointer",
@@ -113,7 +120,7 @@ const styles = {
     overflowY: "auto",
     border: "2px solid var(--black100)",
     borderRadius: "10px",
-    backgroundColor: "white",
+    backgroundColor: "var(--white)",
     position: "relative",
   },
   dataTable: {

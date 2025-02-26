@@ -37,7 +37,7 @@ const CustomChart = ({ data, title }) => {
 const styles = {
   chartContainer: {
     position: "relative",
-    backgroundColor: "#ffffff",
+    backgroundColor: "var(--white)",
     padding: "20px",
     borderRadius: "12px",
   },

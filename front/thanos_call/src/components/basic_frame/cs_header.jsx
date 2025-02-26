@@ -68,7 +68,6 @@ const styles = {
     minHeight: "800px",
     padding: "20px",
     borderRadius: "10px",
-    // marginBottom: "150px",
   },
 }
 

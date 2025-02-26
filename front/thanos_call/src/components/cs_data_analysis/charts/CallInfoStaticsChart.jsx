@@ -3,6 +3,7 @@ import CustomBarChart from "./CustomBarChart"
 import CustomPieChart from "./PieChart"
 import CustomChart from "./CustomChart"
 import { db, collection, getDocs } from "../../../services/firebase"
+import { STRINGS } from "../../../config/string"
 
 const CallInfoStaticsChart = () => {
   const [monthlyCallData, setMonthlyCallData] = useState([])
@@ -40,7 +41,7 @@ const CallInfoStaticsChart = () => {
         }))
         setPieChartData(percentData)
       } catch (error) {
-        console.error("Firestore 데이터 로드 중 오류 발생:", error)
+        //
       }
     }
 
@@ -52,16 +53,38 @@ const CallInfoStaticsChart = () => {
       <div style={styles.barChartRow}>
         <div style={styles.barChartLarge}>
           {monthlyCallData.length > 0 ? (
-            <CustomChart data={monthlyCallData} title="월별 상담 건수" />
+            <CustomChart
+              data={monthlyCallData}
+              title={
+                STRINGS.CS_DATA_ANALYSIS.CHARTS.CALL_INFO_STATICS_CHART
+                  .MONTH_CONSULT_COUNT
+              }
+            />
           ) : (
-            <p>데이터를 불러오는 중...</p>
+            <p>
+              {
+                STRINGS.CS_DATA_ANALYSIS.CHARTS.CALL_INFO_STATICS_CHART
+                  .DATA_LOADING
+              }
+            </p>
           )}
         </div>
         <div style={styles.barChartSmall}>
           {callCategoryData.length > 0 ? (
-            <CustomBarChart data={callCategoryData} title="상담 유형별 건수" />
+            <CustomBarChart
+              data={callCategoryData}
+              title={
+                STRINGS.CS_DATA_ANALYSIS.CHARTS.CALL_INFO_STATICS_CHART
+                  .CALL_CATEGORY_DATA
+              }
+            />
           ) : (
-            <p>데이터를 불러오는 중...</p>
+            <p>
+              {
+                STRINGS.CS_DATA_ANALYSIS.CHARTS.CALL_INFO_STATICS_CHART
+                  .DATA_LOADING
+              }
+            </p>
           )}
         </div>
       </div>
@@ -71,9 +94,19 @@ const CallInfoStaticsChart = () => {
           pieChartData.map((data, index) => (
             <div key={index} style={styles.pieChart}>
               <CustomPieChart
-                data={[data, { name: "기타", value: 100 - data.value }]}
+                data={[
+                  data,
+                  {
+                    name: STRINGS.CS_DATA_ANALYSIS.CHARTS
+                      .CALL_INFO_STATICS_CHART.ETC,
+                    value: 100 - data.value,
+                  },
+                ]}
                 colors={
-                  data.name.includes("전월")
+                  data.name.includes(
+                    STRINGS.CS_DATA_ANALYSIS.CHARTS.CALL_INFO_STATICS_CHART
+                      .PRE_MONTH
+                  )
                     ? ["#E63946", "#E0E0E0"]
                     : ["#007bff", "#E0E0E0"]
                 }
@@ -82,7 +115,12 @@ const CallInfoStaticsChart = () => {
             </div>
           ))
         ) : (
-          <p>데이터를 불러오는 중...</p>
+          <p>
+            {
+              STRINGS.CS_DATA_ANALYSIS.CHARTS.CALL_INFO_STATICS_CHART
+                .DATA_LOADING
+            }
+          </p>
         )}
       </div>
     </div>
@@ -108,12 +146,12 @@ const styles = {
   barChartLarge: {
     width: "65%",
     height: "400px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     borderRadius: "12px",
   },
   barChartSmall: {
     width: "35%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     borderRadius: "12px",
   },
   pieChartContainer: {
@@ -121,7 +159,7 @@ const styles = {
     justifyContent: "space-between",
     width: "97.5%",
     height: "270px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "var(--white)",
     marginTop: "10px",
     marginRight: "40px",
     borderRadius: "12px",
