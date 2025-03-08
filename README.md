@@ -21,7 +21,7 @@ ThanosCall은 다음과 같은 기업에 적합합니다:
 ✔ 업무 자동화를 통해 효율성을 높이고 싶은 기업
 
 ## 📂 프로젝트 구조
-'''
+```
 thanos_call # 프로젝트의 루트 폴더
 │── .vscode
 │── node_modules
@@ -49,7 +49,7 @@ thanos_call # 프로젝트의 루트 폴더
 │ │── utils # 유틸리티 함수 (예: 날짜 포맷, 데이터 변환 등)
 | | |── layout
 │ │── App.css
-'''
+```
 ## 🚀 실행 방법
 ### 저장소 클론
 git clone https://github.com/your-repo/ThanosCall.git
