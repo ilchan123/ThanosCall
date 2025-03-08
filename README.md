@@ -6,14 +6,14 @@ ThanosCall은 기업이 고객의 음성 데이터를 효과적으로 분석하�
 VOC(Voice of Customer) 데이터를 활용하여 부정적인 이슈를 빠르게 감지하고, 소비자 니즈를 반영한 비즈니스 의사결정을 지원합니다.
 
 ## 🎯 주요 기능
-STT (Speech-to-Text): 음성 데이터를 텍스트로 변환
-텍스트 청킹 & FAISS 검색: 고객 발화를 효율적으로 분류 및 검색
-LangChain 기반 AI 분석: 자연어 처리 모델을 활용한 의미 분석
-비즈니스 인사이트 제공: 부정적 이슈 탐지 및 주요 트렌드 분석
+* STT (Speech-to-Text): 음성 데이터를 텍스트로 변환
+* 텍스트 청킹 & FAISS 검색: 고객 발화를 효율적으로 분류 및 검색
+* LangChain 기반 AI 분석: 자연어 처리 모델을 활용한 의미 분석
+* 비즈니스 인사이트 제공: 부정적 이슈 탐지 및 주요 트렌드 분석
 ## 🛠️ 기술 스택
-Frontend: React.js
-Backend / Database: Firebase
-AI / NLP: GPT API, KOBART
+* Frontend: React.js
+* Backend / Database: Firebase
+* AI / NLP: GPT API, KOBART
 ## 📌 적용 대상
 ThanosCall은 다음과 같은 기업에 적합합니다:
 * ✔ 고객 피드백을 빠르게 분석하고 싶은 기업
@@ -64,8 +64,8 @@ npm install
 npm start
 
 ### 💡 트러블슈팅 & 해결 방법
-GPT API를 활용한 학습 데이터 생성 문제 → 데이터 전처리 최적화
-컴포넌트 분리 설계 문제 → 재사용 가능한 구조로 리팩토링
+* GPT API를 활용한 학습 데이터 생성 문제 → 데이터 전처리 최적화
+* 컴포넌트 분리 설계 문제 → 재사용 가능한 구조로 리팩토링
 
 ## 🙌 팀 & 기여자
 팀 타노스
